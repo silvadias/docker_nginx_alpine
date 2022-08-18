@@ -1,0 +1,19 @@
+version: '3'
+
+networks:
+  rede_nginx:
+    name: nginx_network
+    driver: bridge
+
+services:
+  
+  nginx:
+    image: nginx:1.17.6-alpine
+    container_name: nginx
+    networks:
+     - rede_nginx
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./config/nginx:/etc/nginx
+    ports:
+    - "9000:80"
